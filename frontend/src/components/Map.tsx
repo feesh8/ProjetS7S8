@@ -1,19 +1,37 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
-interface Incident {
+interface DataItem {
   id: number;
-  latitude: number;
-  longitude: number;
-  description: string;
+  date: string;
+  heure: string;
+  jsem: string;
+  latitude: string;
+  longitude: string;
 }
 
-const Map: React.FC = () => {
 
-  const incidents: Incident[] = [
-    { id: 1, latitude: 48.119, longitude: -1.678, description: 'Incident 1' },
-    { id: 2, latitude: 48.118, longitude: -1.675, description: 'Incident 2' },
-  ];
+
+const Map: React.FC = () => {
+  const [data, setData] = useState<DataItem[]>([]);
+
+  useEffect(() => {
+      fetchData();
+  }, []);
+
+  const fetchData = async () => {
+      try {
+          const response = await axios.get('http://localhost:3001/api/accidents');
+          if (Array.isArray(response.data)) {
+            setData(response.data);
+        } else {
+            console.error('Le type de données reçu n\'est pas un tableau.');
+        }
+      } catch (error) {
+          console.error('Erreur lors de la récupération des données:', error);
+      }
+  };
 
   return (
     
@@ -26,11 +44,11 @@ const Map: React.FC = () => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
-      {incidents.map(incident => (
-        <Marker key={incident.id} position={[incident.latitude, incident.longitude]}>
-          <Popup>{incident.description}</Popup>
+    {data.map((item, index) => (
+         <Marker key={index} position={[parseFloat(item.latitude), parseFloat(item.longitude)]}>
+          <Popup><center>Accident arrivé le {item.date} à {item.heure} <br/> Détails</center></Popup>
         </Marker>
-      ))}
+    ))}
     </MapContainer>
   );
 };

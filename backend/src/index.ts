@@ -1,10 +1,12 @@
 import express, { Application, Request, Response } from "express";
 import axios from "axios";
+import cors from "cors";
 
 const app: Application = express();
-const port: number = 3000;
+const port: number = 3001;
 
 app.use(express.json());
+app.use(cors());
 
 app.get("/api/accidents", async (req: Request, res: Response) => {
   try {

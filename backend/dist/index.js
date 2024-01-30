@@ -14,9 +14,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const axios_1 = __importDefault(require("axios"));
+const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
-const port = 3000;
+const port = 3001;
 app.use(express_1.default.json());
+app.use((0, cors_1.default)());
 app.get("/api/accidents", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const response = yield axios_1.default.get("http://localhost:5001/api/accidents");
