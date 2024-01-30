@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Link } from 'react-router-dom';
 
 interface DataItem {
   id: number;
   date: string;
   heure: string;
-  jsem: string;
   latitude: string;
   longitude: string;
 }
-
-
 
 const Map: React.FC = () => {
   const [data, setData] = useState<DataItem[]>([]);
@@ -35,21 +33,25 @@ const Map: React.FC = () => {
 
   return (
     
-    <MapContainer
+    <><div className="flex" ><MapContainer
       center={[48.117, -1.677]}
       zoom={13}
       style={{ height: '500px', width: '500px' }}
+      className="Map-container"
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      />
-    {data.map((item, index) => (
-         <Marker key={index} position={[parseFloat(item.latitude), parseFloat(item.longitude)]}>
-          <Popup><center>Accident arrivé le {item.date} à {item.heure} <br/> Détails</center></Popup>
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
+      {data.map((item, index) => (
+        <Marker key={index} position={[parseFloat(item.latitude), parseFloat(item.longitude)]}>
+          <Popup><center>Accident arrivé le {item.date} à {item.heure} <br /> <Link to={`/accidents/${item.id}`}>Détails</Link></center></Popup>
         </Marker>
-    ))}
-    </MapContainer>
+      ))}
+    </MapContainer><div>
+        <img src="/diagrammes/8_rues.png" alt="" style={{ width: '100%', height: 'auto' }}></img>
+        <img src="/diagrammes/accidents_en_fonction_heure.png" alt="" style={{ width: '100%', height: 'auto' }}></img>
+        <img src="/diagrammes/accidents_en_fonction_jour.png" alt="" style={{ width: '100%', height: 'auto' }}></img>
+      </div></div></>
   );
 };
 

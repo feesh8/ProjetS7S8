@@ -29,6 +29,17 @@ app.get("/api/accidents", (req, res) => __awaiter(void 0, void 0, void 0, functi
         res.status(500).json({ error: "Internal Server Error" });
     }
 }));
+app.get("/api/accidents/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    try {
+        const response = yield axios_1.default.get(`http://localhost:5001/api/accidents/${id}`);
+        res.json(response.data);
+    }
+    catch (error) {
+        console.error("Error fetching accident data:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+}));
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });

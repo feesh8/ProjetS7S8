@@ -27,7 +27,33 @@ def filter_accident_data(row):
         'longitude': row['geo_point_2d'].split(",")[1],
         'date': row['date'],
         'heure': row['heure'],
-        'jsem': row['jsem']
+    }
+
+
+def filter_accident_data_for_byId(row):
+    return {
+        'Id': row['id'],
+        'Date': row['date'],
+        'Heure': row['heure'],
+        'Nombre des personnes décédées': row['ntu'],
+        'NbHopital': row['nbh'],
+        'NbNonHopital': row['nbnh'],
+        'adresse': row['adresse'],
+        'vehicule1': row['vehicule1'],
+        'vehicule2': row['vehicule2'],
+        'vehicule3': row['vehicule3'],
+        'vehicule4': row['vehicule4'],
+        'vehicule5': row['vehicule5'],
+        'vehicule6': row['vehicule6'],
+        'usager1': row['usager1'],
+        'usager2': row['usager2'],
+        'usager3': row['usager3'],
+        'usager4': row['usager4'],
+        'usager5': row['usager5'],
+        'usager6': row['usager6'],
+        'usager7': row['usager7'],
+        'usager8': row['usager8'],
+        'intersection': row['inter']
     }
 
 
@@ -47,7 +73,7 @@ def get_accidents_by_id(id):
         return jsonify({'error': 'Invalid ID'})
     if id < 0 or id >= len(data_velo):
         return jsonify({'error': 'Invalid ID'})
-    return jsonify(data_velo[id - 1])
+    return jsonify(filter_accident_data_for_byId(data_velo[id - 1]))
 
 
 if __name__ == '__main__':

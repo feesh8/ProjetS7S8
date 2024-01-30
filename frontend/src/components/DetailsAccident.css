@@ -1,0 +1,13 @@
+.details-container {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .details-list {
+    padding: 0;
+  }
+  
+  .details-item {
+    margin-bottom: 16px;
+  }
+  
