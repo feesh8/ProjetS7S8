@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Link } from 'react-router-dom';
+import "./Map.css";
 
 interface DataItem {
   id: number;
@@ -33,11 +34,11 @@ const Map: React.FC = () => {
 
   return (
     
-    <><div className="flex" ><MapContainer
+    <><div><MapContainer
       center={[48.117, -1.677]}
       zoom={13}
       style={{ height: '500px', width: '500px' }}
-      className="Map-container"
+      className='Map-container'
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -47,7 +48,7 @@ const Map: React.FC = () => {
           <Popup><center>Accident arrivé le {item.date} à {item.heure} <br /> <Link to={`/accidents/${item.id}`}>Détails</Link></center></Popup>
         </Marker>
       ))}
-    </MapContainer><div>
+    </MapContainer><div className='flex'>
         <img src="/diagrammes/8_rues.png" alt="" style={{ width: '100%', height: 'auto' }}></img>
         <img src="/diagrammes/accidents_en_fonction_heure.png" alt="" style={{ width: '100%', height: 'auto' }}></img>
         <img src="/diagrammes/accidents_en_fonction_jour.png" alt="" style={{ width: '100%', height: 'auto' }}></img>
