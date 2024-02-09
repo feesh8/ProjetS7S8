@@ -15,15 +15,12 @@ masque_bicyclette = ((df['vehicule1'].str.lower() == 'bicyclette') |
 # Extraire les lignes correspondantes
 resultat = df[masque_bicyclette]
 
+# Réinitialiser l'index pour créer une nouvelle colonne "id" incrémentale
+resultat.reset_index(drop=True, inplace=True)
+resultat[
+    'id'] = resultat.index + 1  # Créer une colonne "id" en incrémentant de 1
+
 resultat.to_csv('accidents_velo_rennes.csv', index=False)
-
-# Convertit en bdd Sqlite
-db_connection = sqlite3.connect('accidents_velo_rennes.db')
-
-table_name = 'accidents_velo'
-resultat.to_sql(table_name, db_connection, index=False, if_exists='replace')
-
-db_connection.close()
 
 # Afficher le résultat
 # print(resultat)

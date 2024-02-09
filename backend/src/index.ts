@@ -1,12 +1,36 @@
-import express from "express";
+import express, { Application, Request, Response } from "express";
+import axios from "axios";
+import cors from "cors";
 
-const app = express();
-const PORT = 3000;
+const app: Application = express();
+const port: number = 3001;
 
-app.get("/", (req, res) => {
-    res.send("<h1>Hello TS Node Dev</h1>")
+app.use(express.json());
+app.use(cors());
+
+app.get("/api/accidents", async (req: Request, res: Response) => {
+  try {
+    const response = await axios.get("http://localhost:5001/api/accidents");
+    res.json(response.data);
+  } catch (error) {
+    console.error("Error fetching accident data:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
-app.listen(PORT, () => {
-    console.log("Port is listening on port " + PORT);
+app.get("/api/accidents/:id", async (req: Request, res: Response) => {
+  const { id } = req.params;
+  try {
+    const response = await axios.get(
+      `http://localhost:5001/api/accidents/${id}`
+    );
+    res.json(response.data);
+  } catch (error) {
+    console.error("Error fetching accident data:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
 });
