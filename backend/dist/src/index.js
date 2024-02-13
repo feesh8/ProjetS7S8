@@ -12,42 +12,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.listener = exports.app = void 0;
+exports.app = void 0;
 const express_1 = __importDefault(require("express"));
-const axios_1 = __importDefault(require("axios"));
 const cors_1 = __importDefault(require("cors"));
+require("reflect-metadata");
+const accidentMetropoleRoutes_1 = __importDefault(require("./routes/accidentMetropoleRoutes"));
+const data_source_1 = require("./data-source");
+const signalementRoutes_1 = __importDefault(require("./routes/signalementRoutes"));
 const app = (0, express_1.default)();
 exports.app = app;
 const port = 3001;
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
-app.get("/api/accidents", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const response = yield axios_1.default.get("http://localhost:5001/api/accidents");
-        res.json(response.data);
-    }
-    catch (error) {
-        console.error("Error fetching accident data:", error);
-        res.status(500).json({ error: "Internal Server Error" });
-    }
-}));
-app.get("/api/accidents/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.params;
-    try {
-        const response = yield axios_1.default.get(`http://localhost:5001/api/accidents/${id}`);
-        res.json(response.data);
-    }
-    catch (error) {
-        if (axios_1.default.isAxiosError(error) && error.response && error.response.status === 404) {
-            res.status(404).json({ error: "Not Found" });
-        }
-        else {
-            console.error("Error fetching accident data:", error);
-            res.status(500).json({ error: "Internal Server Error" });
-        }
-    }
-}));
-const listener = app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}`);
-});
-exports.listener = listener;
+app.use("/api", accidentMetropoleRoutes_1.default);
+app.use("/api", signalementRoutes_1.default);
+data_source_1.AppDataSource.initialize()
+    .then(() => __awaiter(void 0, void 0, void 0, function* () {
+    app.listen(port, () => {
+        console.log("Server is running on http://localhost:" + port);
+    });
+    console.log("Data Source has been initialized!");
+}))
+    .catch((error) => console.log(error));

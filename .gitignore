@@ -1,6 +1,11 @@
 .vscode/*
 .vscode
 
+.idea/
+build/
+tmp/
+temp/
+
 # Logs
 logs
 *.log
