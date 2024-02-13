@@ -13,3 +13,11 @@ node_modules/
 *.tsbuildinfo
 
 .DS_Store
+
+# Python
+
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+.pytest_cache
