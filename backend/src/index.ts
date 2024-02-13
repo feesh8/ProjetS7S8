@@ -31,7 +31,7 @@ app.get("/api/accidents/:id", async (req: Request, res: Response) => {
       res.status(404).json({ error: "Not Found" });
     } else {
       console.error("Error fetching accident data:", error);
-      res.status(500).json({ error: "Internal Server Error" });
+      res.status(500).json({ error: "Internal Server Error" }); 
     }
   }
 });

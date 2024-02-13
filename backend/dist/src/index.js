@@ -43,7 +43,7 @@ app.get("/api/accidents/:id", (req, res) => __awaiter(void 0, void 0, void 0, fu
         }
         else {
             console.error("Error fetching accident data:", error);
-            res.status(500).json({ error: "Internal Server " });
+            res.status(500).json({ error: "Internal Server Error" });
         }
     }
 }));
