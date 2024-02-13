@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, Response
 from flask_cors import CORS, cross_origin
 import csv
 
@@ -67,13 +67,15 @@ def get_accidents():
 @app.route('/api/accidents/<int:id>', methods=['GET'])
 @cross_origin()
 def get_accidents_by_id(id):
-    try:
-        id = int(id)
-    except ValueError:
-        return jsonify({'error': 'Invalid ID'})
-    if id < 0 or id >= len(data_velo):
-        return jsonify({'error': 'Invalid ID'})
     return jsonify(filter_accident_data_for_byId(data_velo[id - 1]))
+
+
+@app.errorhandler(404)
+def handle_not_found_error(error):
+    response = jsonify({'error': 'Not Found'})
+    response.status_code = 404
+    response.headers['Content-Type'] = 'application/json'
+    return response
 
 
 if __name__ == '__main__':
