@@ -47,3 +47,11 @@ def test_invalid_id(client):
     assert response.headers['Content-Type'] == 'application/json'
     data = json.loads(response.data)
     assert 'error' in data
+
+
+def test_inexistant_id(client):
+    response = client.get('/api/accidents/25666666')
+    assert response.status_code == 404
+    assert response.headers['Content-Type'] == 'application/json'
+    data = json.loads(response.data)
+    assert 'error' in data

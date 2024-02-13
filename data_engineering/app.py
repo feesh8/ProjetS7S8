@@ -67,6 +67,11 @@ def get_accidents():
 @app.route('/api/accidents/<int:id>', methods=['GET'])
 @cross_origin()
 def get_accidents_by_id(id):
+    if id < 0 or id >= len(data_velo):
+        response = jsonify({'error': 'Not Found'})
+        response.status_code = 404
+        response.headers['Content-Type'] = 'application/json'
+        return response
     return jsonify(filter_accident_data_for_byId(data_velo[id - 1]))
 
 
