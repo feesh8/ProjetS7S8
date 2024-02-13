@@ -36,6 +36,15 @@ app.get("/api/accidents/:id", async (req: Request, res: Response) => {
   }
 });
 
+app.get("/api/signalement", async (req: Request, res: Response) => {
+  try {
+    const response: never[] = [];
+  } catch (error) {
+    console.error("Error fetching accident data:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 
 const listener = app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
