@@ -1,6 +1,7 @@
 import express, { Application, Request, Response } from "express";
 import axios from "axios";
 import cors from "cors";
+import { createServer } from "http";
 
 const app: Application = express();
 const port: number = 3001;
@@ -26,11 +27,18 @@ app.get("/api/accidents/:id", async (req: Request, res: Response) => {
     );
     res.json(response.data);
   } catch (error) {
-    console.error("Error fetching accident data:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    if (axios.isAxiosError(error) && error.response && error.response.status === 404) {
+      res.status(404).json({ error: "Not Found" });
+    } else {
+      console.error("Error fetching accident data:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
+
+const listener = app.listen(port, () => {
+    console.log(`Server is running at http://localhost:${port}`);
+  });
+  
+  export { app, listener };

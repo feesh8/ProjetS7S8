@@ -12,10 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.listener = exports.app = void 0;
 const express_1 = __importDefault(require("express"));
 const axios_1 = __importDefault(require("axios"));
 const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
+exports.app = app;
 const port = 3001;
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
@@ -40,6 +42,7 @@ app.get("/api/accidents/:id", (req, res) => __awaiter(void 0, void 0, void 0, fu
         res.status(500).json({ error: "Internal Server Error" });
     }
 }));
-app.listen(port, () => {
+const listener = app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });
+exports.listener = listener;
