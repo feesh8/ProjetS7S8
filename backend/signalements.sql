@@ -110,8 +110,7 @@ ALTER SEQUENCE public.dangerous_zone_id_seq OWNED BY public.dangerous_zone.id;
 
 CREATE TABLE public.utilisateur (
     id integer NOT NULL,
-    nom character varying NOT NULL,
-    prenom character varying NOT NULL,
+    username character varying NOT NULL,
     email character varying NOT NULL,
     mot_de_passe character varying NOT NULL
 );
@@ -185,9 +184,9 @@ COPY public.dangerous_zone (id, latitude, longitude, description, "userId") FROM
 -- Data for Name: utilisateur; Type: TABLE DATA; Schema: public; Owner: fannyshehabi
 --
 
-COPY public.utilisateur (id, nom, prenom, email, mot_de_passe) FROM stdin;
-1	Bon	Jean	utilisateur@example.com	motdepasse
-2	Croche	Sarah	utilisateur2@example.com	motdepasse
+COPY public.utilisateur (id, username, email, mot_de_passe) FROM stdin;
+1	BonJean	utilisateur@example.com	motdepasse
+2	CrocheSarah	utilisateur2@example.com	motdepasse
 \.
 
 

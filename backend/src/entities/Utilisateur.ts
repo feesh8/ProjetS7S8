@@ -15,10 +15,7 @@ export class Utilisateur {
   id!: number;
 
   @Column()
-  nom!: string;
-
-  @Column()
-  prenom!: string;
+  username!: string;
 
   @Column()
   email!: string;
