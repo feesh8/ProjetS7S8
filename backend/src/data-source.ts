@@ -6,9 +6,9 @@ import { Utilisateur } from "./entities/Utilisateur";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
-  host: "localhost",
+  host: "db",
   port: 5432,
-  username: "fannyshehabi",
+  username: "postgres",
   password: "postgres",
   database: "signalements_utilisateurs",
   synchronize: true,

@@ -1,0 +1,46 @@
+networks:
+  back:
+
+services:
+  data_engineering:
+    container_name: data-engineering
+    build: ./data_engineering
+    ports:
+      - "5001:5001"
+    networks:
+      - back
+
+  database:
+    container_name: db
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: signalements_utilisateurs
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./backend/signalements.sql:/docker-entrypoint-initdb.d/signalements.sql
+    networks:
+      - back
+
+  backend:
+    build: ./backend
+    ports:
+      - "3001:3001"
+    depends_on:
+      - database
+    networks:
+      - back
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - back
+
+volumes:
+  postgres-data:

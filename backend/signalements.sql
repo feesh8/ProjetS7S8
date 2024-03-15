@@ -23,7 +23,7 @@ SET row_security = off;
 -- *not* creating schema, since initdb creates it
 
 
-ALTER SCHEMA public OWNER TO fannyshehabi;
+ALTER SCHEMA public OWNER TO postgres;
 
 SET default_tablespace = '';
 
@@ -43,7 +43,7 @@ CREATE TABLE public.accident (
 );
 
 
-ALTER TABLE public.accident OWNER TO fannyshehabi;
+ALTER TABLE public.accident OWNER TO postgres;
 
 --
 -- Name: accident_id_seq; Type: SEQUENCE; Schema: public; Owner: fannyshehabi
@@ -58,7 +58,7 @@ CREATE SEQUENCE public.accident_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.accident_id_seq OWNER TO fannyshehabi;
+ALTER TABLE public.accident_id_seq OWNER TO postgres;
 
 --
 -- Name: accident_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: fannyshehabi
@@ -80,7 +80,7 @@ CREATE TABLE public.dangerous_zone (
 );
 
 
-ALTER TABLE public.dangerous_zone OWNER TO fannyshehabi;
+ALTER TABLE public.dangerous_zone OWNER TO postgres;
 
 --
 -- Name: dangerous_zone_id_seq; Type: SEQUENCE; Schema: public; Owner: fannyshehabi
@@ -95,7 +95,7 @@ CREATE SEQUENCE public.dangerous_zone_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.dangerous_zone_id_seq OWNER TO fannyshehabi;
+ALTER TABLE public.dangerous_zone_id_seq OWNER TO postgres;
 
 --
 -- Name: dangerous_zone_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: fannyshehabi
@@ -116,7 +116,7 @@ CREATE TABLE public.utilisateur (
 );
 
 
-ALTER TABLE public.utilisateur OWNER TO fannyshehabi;
+ALTER TABLE public.utilisateur OWNER TO postgres;
 
 --
 -- Name: utilisateur_id_seq; Type: SEQUENCE; Schema: public; Owner: fannyshehabi
@@ -131,7 +131,7 @@ CREATE SEQUENCE public.utilisateur_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.utilisateur_id_seq OWNER TO fannyshehabi;
+ALTER TABLE public.utilisateur_id_seq OWNER TO postgres;
 
 --
 -- Name: utilisateur_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: fannyshehabi

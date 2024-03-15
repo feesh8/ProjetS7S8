@@ -20,7 +20,10 @@
     "sequelize": "^6.36.0",
     "sqlite3": "^5.1.7",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "0.3.17",
+    "pg": "^8.7.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.23.9",

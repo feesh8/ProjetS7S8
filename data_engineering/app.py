@@ -16,7 +16,7 @@ def read_csv(file_path):
     return data
 
 
-file_path = '../data/accidents_velo_rennes.csv'
+file_path = 'data/accidents_velo_rennes.csv'
 data_velo = read_csv(file_path)
 
 
@@ -84,4 +84,4 @@ def handle_not_found_error(error):
 
 
 if __name__ == '__main__':
-    app.run(port=5001)
+    app.run(host='0.0.0.0', port=5001)
