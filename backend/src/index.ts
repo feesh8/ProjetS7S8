@@ -1,44 +1,26 @@
-import express, { Application, Request, Response } from "express";
-import axios from "axios";
+import express from "express";
 import cors from "cors";
-import { createServer } from "http";
+import "reflect-metadata";
+import accidentRoutes from "./routes/accidentMetropoleRoutes";
+import { AppDataSource } from "./data-source";
+import signalementRoutes from "./routes/signalementRoutes";
 
-const app: Application = express();
-const port: number = 3001;
+const app = express();
+const port = 3001;
 
 app.use(express.json());
 app.use(cors());
 
-app.get("/api/accidents", async (req: Request, res: Response) => {
-  try {
-    const response = await axios.get("http://localhost:5001/api/accidents");
-    res.json(response.data);
-  } catch (error) {
-    console.error("Error fetching accident data:", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
+app.use("/api", accidentRoutes);
+app.use("/api", signalementRoutes);
 
-app.get("/api/accidents/:id", async (req: Request, res: Response) => {
-  const { id } = req.params;
-  try {
-    const response = await axios.get(
-      `http://localhost:5001/api/accidents/${id}`
-    );
-    res.json(response.data);
-  } catch (error) {
-    if (axios.isAxiosError(error) && error.response && error.response.status === 404) {
-      res.status(404).json({ error: "Not Found" });
-    } else {
-      console.error("Error fetching accident data:", error);
-      res.status(500).json({ error: "Internal Server Error" }); 
-    }
-  }
-});
+AppDataSource.initialize()
+  .then(async () => {
+    app.listen(port, () => {
+      console.log("Server is running on http://localhost:" + port);
+    });
+    console.log("Data Source has been initialized!");
+  })
+  .catch((error) => console.log(error));
 
-
-const listener = app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}`);
-  });
-  
-  export { app, listener };
+export { app };
