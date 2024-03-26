@@ -1,0 +1,14 @@
+/* Map container styles */
+.Map-container {
+    height: 500px;
+    width: 80%;
+    margin: 100px auto 100px auto;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+.flex {
+    width: 50%;
+    margin: auto;
+    flex-direction: column;
+  }
