@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import "./DetailsAccident.css"
 
 
 const DetailsAccident = () => {
-    const [accidentDetails, setAccidentDetails] = useState(null);
+    const [accidentDetails, setAccidentDetails] = useState<any>({});
     const accidentId = useParams()["id"];
   
     useEffect(() => {
@@ -24,27 +25,32 @@ const DetailsAccident = () => {
       return <div>Loading...</div>;
     }
 
-    const formattedDetails = Object.entries(accidentDetails).reduce((acc, [key, value]) => {
-        // Exclure les champs vides ou null
-        if (value !== '' && value !== null && value !== undefined) {
-          // Gérer le formatage spécifique si nécessaire
-          acc[key] = value;
-        }
-        return acc;
-      }, {} as Record<string, any>);
+    const renderDescription = () => {
+      if (!accidentDetails) return null;
   
-    return (
-        <div className="details-container">
-    <h2>Details de l'Accident</h2>
-    <dl className="details-list">
-      {Object.entries(formattedDetails).map(([key, value]) => (
-        <div key={key} className="details-item">
-          <strong>{key}:</strong> {value}
+      const { NbHopital, NbNonHopital, 'Nombre des personnes décédées': NombreDecedes, ...details } = accidentDetails;
+  
+      return (
+        <div>
+          <p>Nombre d'hospitalisations : {NbHopital}</p>
+          <p>Nombre de personnes non hospitalisées : {NbNonHopital}</p>
+          <p>Nombre de personnes décédées : {NombreDecedes}</p>
+          <p>Intersection : {details.intersection}</p>
         </div>
-      ))}
-    </dl>
-  </div>
-    );
+      );
+    };
+
+    // Afficher les détails de l'accident
+  return (
+    <div className="details-container">
+      <h2>Détails de l'accident</h2>
+      <p><b>Date</b> : {accidentDetails.Date}</p>
+      <p><b>Heure</b> : {accidentDetails.Heure}</p>
+      <p><b>Adresse</b> : {accidentDetails.adresse}</p>
+      <p><b>Description</b> : {renderDescription()}</p>
+      <button>Retour</button>
+    </div>
+  );
   };
   
   export default DetailsAccident;
