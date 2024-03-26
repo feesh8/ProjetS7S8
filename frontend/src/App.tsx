@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Map from './components/Map';
 import DetailsAccident from './components/DetailsAccident';
 import './App.css';
+import Signalement from './components/Signalement';
 
 const App: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ const App: React.FC = () => {
       <Router>
       <Routes>
           <Route path="/accidents/:id" element={<DetailsAccident />} />
+          <Route path="/signalement" element={<Signalement />} />
           <Route path="/" element={<Map />} />
       </Routes>
       </Router>

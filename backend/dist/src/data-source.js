@@ -8,9 +8,9 @@ const DangerousZone_1 = require("./entities/DangerousZone");
 const Utilisateur_1 = require("./entities/Utilisateur");
 exports.AppDataSource = new typeorm_1.DataSource({
     type: "postgres",
-    host: "localhost",
+    host: "db",
     port: 5432,
-    username: "fannyshehabi",
+    username: "postgres",
     password: "postgres",
     database: "signalements_utilisateurs",
     synchronize: true,
