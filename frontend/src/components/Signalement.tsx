@@ -93,18 +93,6 @@ const Signalement = () => {
           </MapContainer>
         </div>
 
-        {type === 'Accident' && (
-          <div>
-            <label htmlFor="nombreBlesses">Nombre de blessé(s) :</label>
-            <input
-              type="number"
-              id="nombreBlesses"
-              value={nombreBlesses}
-              onChange={handleNombreBlessesChange}
-            />
-          </div>
-        )}
-
         <label>Description :</label>
         <textarea name="description" value={formData.description} onChange={handleChange} />
 
