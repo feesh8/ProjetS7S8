@@ -4,6 +4,7 @@ import Map from './components/Map';
 import DetailsAccident from './components/DetailsAccident';
 import './App.css';
 import Map_user from './components/Map_user';
+import DetailsSignalement from './components/DetailsSignalement';
 
 const App: React.FC = () => {
   return (
@@ -14,6 +15,7 @@ const App: React.FC = () => {
       <Router>
       <Routes>
           <Route path="/accidents/:id" element={<DetailsAccident />} />
+          <Route path="/signalements/:id" element={<DetailsSignalement />} />
           <Route path="/signalement" element={<Map_user />} />
           <Route path="/" element={<Map />} />
       </Routes>

@@ -37,11 +37,10 @@ const Map: React.FC = () => {
 
   const fetchData = async () => {
       try {
-          const response_acc = await axios.get('http://localhost:3001/api/signalements/accidents');
-          const response_zone = await axios.get('http://localhost:3001/api/signalements/zones-dangereuses');
-          if (Array.isArray(response_acc.data.data) && Array.isArray(response_zone.data.data)) {
-            console.log((response_acc.data.data).concat(response_zone.data.data))
-            setData((response_acc.data.data).concat(response_zone.data.data));
+          const response_acc = await axios.get('http://localhost:3001/api/signalements');
+          if (Array.isArray(response_acc.data.data)) {
+            console.log(response_acc.data.data);
+            setData(response_acc.data.data);
         } else {
             console.error('Le type de données reçu n\'est pas un tableau.');
         }
@@ -66,7 +65,7 @@ const Map: React.FC = () => {
       >
       {data.map((item, index) => (
         <Marker key={index} position={[parseFloat(item.latitude), parseFloat(item.longitude)]} icon={customIcon}>
-          <Popup><center>Accident arrivé le {item.date} <br /> <Link to={`/accidents/${item.id}`}>Détails</Link></center></Popup>
+          <Popup><center>Accident arrivé le {item.date} <br /> <Link to={`/signalements/${item.id}`}>Détails</Link></center></Popup>
         </Marker>
       ))}
       </MarkerClusterGroup>
