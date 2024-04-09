@@ -37,12 +37,12 @@ const Map: React.FC = () => {
 
   const fetchData = async () => {
       try {
-          const response = await axios.get('http://localhost:3001/api/signalements/accidents');
-          if (Array.isArray(response.data.data)) {
-            setData(response.data.data);
+          const response_acc = await axios.get('http://localhost:3001/api/signalements/accidents');
+          const response_zone = await axios.get('http://localhost:3001/api/signalements/zones-dangereuses');
+          if (Array.isArray(response_acc.data.data) && Array.isArray(response_zone.data.data)) {
+            console.log((response_acc.data.data).concat(response_zone.data.data))
+            setData((response_acc.data.data).concat(response_zone.data.data));
         } else {
-            console.log(response)
-            console.log(response.data)
             console.error('Le type de données reçu n\'est pas un tableau.');
         }
       } catch (error) {
