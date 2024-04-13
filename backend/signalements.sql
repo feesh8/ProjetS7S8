@@ -41,9 +41,8 @@ CREATE TABLE public.signalement (
     date timestamp without time zone NOT NULL,
     description text NOT NULL,
     type text NOT NULL,
-    userid integer NOT NULL
+    "userId" integer NOT NULL
 );
-
 
 ALTER TABLE public.signalement OWNER TO postgres;
 
@@ -56,8 +55,7 @@ CREATE SEQUENCE public.signalement_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+    NO MAXVALUE;
 
 
 ALTER TABLE public.signalement_id_seq OWNER TO postgres;
@@ -69,14 +67,15 @@ ALTER TABLE public.signalement_id_seq OWNER TO postgres;
 ALTER SEQUENCE public.signalement_id_seq OWNED BY public.signalement.id;
 
 
+
 --
 -- Name: utilisateur; Type: TABLE; Schema: public; Owner: fannyshehabi
 --
 
 CREATE TABLE public.utilisateur (
     id integer NOT NULL,
-    email character varying(255) NOT NULL,
-    mdp character varying(255) NOT NULL
+    email character varying NOT NULL,
+    mot_de_passe character varying NOT NULL
 );
 
 
@@ -91,8 +90,7 @@ CREATE SEQUENCE public.utilisateur_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+    NO MAXVALUE;
 
 
 ALTER TABLE public.utilisateur_id_seq OWNER TO postgres;
@@ -103,13 +101,11 @@ ALTER TABLE public.utilisateur_id_seq OWNER TO postgres;
 
 ALTER SEQUENCE public.utilisateur_id_seq OWNED BY public.utilisateur.id;
 
-
 --
 -- Name: signalement id; Type: DEFAULT; Schema: public; Owner: fannyshehabi
 --
 
 ALTER TABLE ONLY public.signalement ALTER COLUMN id SET DEFAULT nextval('public.signalement_id_seq'::regclass);
-
 
 --
 -- Name: utilisateur id; Type: DEFAULT; Schema: public; Owner: fannyshehabi
@@ -119,23 +115,21 @@ ALTER TABLE ONLY public.utilisateur ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
--- Data for Name: signalement; Type: TABLE DATA; Schema: public; Owner: fannyshehabi
+-- Data for Name: accident; Type: TABLE DATA; Schema: public; Owner: fannyshehabi
 --
 
-COPY public.signalement (id, latitude, longitude, adresse, date, description, type, userid) FROM stdin;
-4	48.1173	-1.6778	Rennes, France	2024-04-09 15:14:32.958706	Travaux sur la chaussée	Danger	1
-5	48.1173	-1.6778	Rennes, France	2024-04-09 15:14:32.958706	Accident de la circulation	Accident	2
-6	48.1173	-1.6778	Rennes, France	2024-04-09 15:14:32.958706	Présence de débris sur la route	Danger	2
+COPY public.signalement (id, latitude, longitude, adresse, date, description, type, "userId") FROM stdin;
+1	48.117266	-1.677792	Adresse 1, Rennes	2024-04-13 15:48:22.735205	Danger sur la rue principale.	Danger	1
+2	48.117266	-1.677792	Adresse 2, Rennes	2024-04-13 15:48:45.405255	Accident sur la rue secondaire.	Accident	2
 \.
-
 
 --
 -- Data for Name: utilisateur; Type: TABLE DATA; Schema: public; Owner: fannyshehabi
 --
 
-COPY public.utilisateur (id, email, mdp) FROM stdin;
-1	john@example.com	password123
-2	jane@example.com	password456
+COPY public.utilisateur (id, email, mot_de_passe) FROM stdin;
+1	utilisateur@example.com	motdepasse
+2	utilisateur2@example.com	motdepasse
 \.
 
 
@@ -143,7 +137,8 @@ COPY public.utilisateur (id, email, mdp) FROM stdin;
 -- Name: signalement_id_seq; Type: SEQUENCE SET; Schema: public; Owner: fannyshehabi
 --
 
-SELECT pg_catalog.setval('public.signalement_id_seq', 6, true);
+SELECT pg_catalog.setval('public.signalement_id_seq', 2, true);
+
 
 
 --
@@ -160,13 +155,13 @@ SELECT pg_catalog.setval('public.utilisateur_id_seq', 2, true);
 ALTER TABLE ONLY public.signalement
     ADD CONSTRAINT signalement_pkey PRIMARY KEY (id);
 
-
 --
--- Name: utilisateur utilisateur_pkey; Type: CONSTRAINT; Schema: public; Owner: fannyshehabi
+-- Name: utilisateur PK_838f0f99fe900e49ef050030443; Type: CONSTRAINT; Schema: public; Owner: fannyshehabi
 --
 
 ALTER TABLE ONLY public.utilisateur
     ADD CONSTRAINT utilisateur_pkey PRIMARY KEY (id);
+
 
 
 --
@@ -174,7 +169,7 @@ ALTER TABLE ONLY public.utilisateur
 --
 
 ALTER TABLE ONLY public.signalement
-    ADD CONSTRAINT signalement_userid_fkey FOREIGN KEY (userid) REFERENCES public.utilisateur(id);
+    ADD CONSTRAINT signalement_userId_fkey FOREIGN KEY ("userId") REFERENCES public.utilisateur(id);
 
 
 --
@@ -188,4 +183,3 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 --
 -- PostgreSQL database dump complete
 --
-
