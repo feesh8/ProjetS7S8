@@ -5,9 +5,8 @@ import {
   OneToMany,
   JoinTable,
 } from "typeorm";
-import { Accident } from "./Accident";
-import { DangerousZone } from "./DangerousZone";
 import "reflect-metadata";
+import { Signalement } from "./Signalement";
 
 @Entity()
 export class Utilisateur {
@@ -15,19 +14,12 @@ export class Utilisateur {
   id!: number;
 
   @Column()
-  username!: string;
-
-  @Column()
   email!: string;
 
   @Column()
-  mot_de_passe!: string;
+  mdp!: string;
 
-  @OneToMany(() => Accident, (accident) => accident.user, { eager: true })
+  @OneToMany(() => Signalement, (accident) => accident.user, { eager: true })
   @JoinTable()
-  accidents!: Accident[]; // Relation OneToMany avec Accident
-
-  @OneToMany(() => DangerousZone, (zone) => zone.user, { eager: true })
-  @JoinTable()
-  dangerousZones!: DangerousZone[]; // Relation OneToMany avec Accident
+  signalements!: Signalement[]; // Relation OneToMany avec Accident
 }

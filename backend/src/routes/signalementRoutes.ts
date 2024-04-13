@@ -1,18 +1,11 @@
 import express from "express";
-import { AccidentSignalementController } from "../controllers/accidentSignalementController";
+// import { signalementController } from "../controllers/signalementController";
 import { UserController } from "../controllers/userController";
-import { ZonesDangereusesController } from "../controllers/zonesDangereusesController";
+import { SignalementController } from "../controllers/signalementController";
 
 const router = express.Router();
 
 router.get("/users", UserController.getUsers);
-router.get(
-  "/signalements/accidents",
-  AccidentSignalementController.getAccidents
-);
-router.get(
-  "/signalements/zones-dangereuses",
-  ZonesDangereusesController.getDanger
-);
+router.get("/signalements", SignalementController.getSignalement);
 
 export default router;
