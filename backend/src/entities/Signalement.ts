@@ -30,8 +30,8 @@ export class Signalement {
   date!: string;
 
   @Column()
-  type!: string;
+  description!: string;
 
   @Column()
-  description!: string;
+  type!: string;
 }

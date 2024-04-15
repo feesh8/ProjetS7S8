@@ -2,7 +2,7 @@ networks:
   back:
 
 services:
-  data_engineering:
+  data-engineering:
     container_name: data-engineering
     build: ./data_engineering
     ports:
@@ -27,6 +27,7 @@ services:
       - back
 
   backend:
+    container_name: backend
     build: ./backend
     ports:
       - "3001:3001"
@@ -36,9 +37,24 @@ services:
       - back
 
   frontend:
+    container_name: frontend
     build: ./frontend
     ports:
       - "3000:3000"
+    networks:
+      - back
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    depends_on:
+      - backend
+      - frontend
+      - data-engineering
+    ports:
+      - "1234:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
     networks:
       - back
 

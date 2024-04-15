@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "../data-source";
 import { Signalement } from "../entities/Signalement";
+import { Utilisateur } from "../entities/Utilisateur";
 
 export class SignalementController {
   static async getSignalement(req: Request, res: Response) {
@@ -24,9 +25,47 @@ export class SignalementController {
       }
     } catch (error) {
       // En cas d'erreur lors de la récupération des données, renvoyez un message d'erreur
-      return res.status(500).json({
-        error: "Erreur lors de la récupération des données: " + error.message,
+      if (error instanceof Error) {
+        return res.status(500).json({
+          error: "Erreur lors de la récupération des données: " + error.message,
+        });
+      }
+    }
+  }
+
+  static async createSignalement(req: Request, res: Response) {
+    try {
+      const { latitude, longitude, adresse, date, description, type, userId } =
+        req.body;
+
+      // Obtenez l'utilisateur correspondant à l'ID fourni
+      const utilisateurRepository = AppDataSource.getRepository(Utilisateur);
+      const utilisateur = await utilisateurRepository.findOne({
+        where: { id: userId },
       });
+
+      // Vérifiez si l'utilisateur existe
+      if (!utilisateur) {
+        return res.status(404).json({ error: "Utilisateur non trouvé" });
+      }
+
+      // Créez un nouveau signalement associé à cet utilisateur
+      const signalementRepository = AppDataSource.getRepository(Signalement);
+      const newSignalement = await signalementRepository.create({
+        latitude,
+        longitude,
+        adresse,
+        date,
+        description,
+        type,
+        user: utilisateur,
+      });
+      await signalementRepository.save(newSignalement);
+
+      return res.status(201).json({ data: newSignalement });
+    } catch (error) {
+      console.error("Error creating signalement:", error);
+      return res.status(500).json({ error: "Internal Server Error" });
     }
   }
 }
