@@ -9,11 +9,11 @@ import { Utilisateur } from "./Utilisateur";
 import "reflect-metadata";
 
 @Entity()
-export class Accident {
+export class Signalement {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @ManyToOne(() => Utilisateur, (utilisateur) => utilisateur.accidents)
+  @ManyToOne(() => Utilisateur, (user) => user.signalements)
   @JoinTable()
   user!: Utilisateur; // Relation ManyToOne avec User
 
@@ -24,8 +24,14 @@ export class Accident {
   longitude!: number;
 
   @Column()
-  date!: Date;
+  adresse!: string;
+
+  @Column()
+  date!: string;
 
   @Column()
   description!: string;
+
+  @Column()
+  type!: string;
 }

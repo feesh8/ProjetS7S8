@@ -18,7 +18,7 @@ class AccidentMetropoleController {
     static getAccidents(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield axios_1.default.get("http://localhost:5001/api/accidents");
+                const response = yield axios_1.default.get("http://data-engineering:5001/api/accidents");
                 res.json(response.data);
             }
             catch (error) {
@@ -31,7 +31,7 @@ class AccidentMetropoleController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             try {
-                const response = yield axios_1.default.get(`http://localhost:5001/api/accidents/${id}`);
+                const response = yield axios_1.default.get(`http://data-engineering:5001/api/accidents/${id}`);
                 res.json(response.data);
             }
             catch (error) {
