@@ -9,16 +9,16 @@ interface LoginProps {
 
 const Login: React.FC<LoginProps> = ({ onLogin }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
 
     try {
       // Send login request to backend
-      const response = await axios.post('http://localhost:3001/api/user', {
-        username,
-        password
+      const response = await axios.post('http://localhost:3001/login', {
+        email: email,
+        mot_de_passe: password,
       });
   
       // Check if login was successful based on the response status
@@ -26,18 +26,11 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
         setIsLoggedIn(true);
         onLogin();
       } else {
-        alert('Invalid username or password');
+        alert('Invalid email or password');
       }
     } catch (error) {
       console.error('Error occurred while logging in:', error);
       alert('Error occurred while logging in');
-    }
-
-    if (username === 'admin' && password === 'password') {
-      setIsLoggedIn(true);
-      onLogin();
-    } else {
-      alert('Invalid username or password');
     }
   };
 
@@ -49,9 +42,9 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
     <div>
       <input
         type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
       />
       <input
         type="password"

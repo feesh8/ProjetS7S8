@@ -35,4 +35,51 @@ export class UserController {
       return res.status(500).json({ message: 'Erreur lors de la récupération de l\'utilisateur' });
     }
   }
+
+  static async loginUser(req: Request, res: Response) {
+    const { email, mot_de_passe } = req.body;
+
+    try {
+      const userRepository = AppDataSource.getRepository(Utilisateur);
+      const user = await userRepository.findOne({ where: { email, mot_de_passe } });
+
+      if (user) {
+        res.status(200).json({ user });
+      } else {
+        res.status(401).json({ message: 'Invalid email or password' });
+      }
+    } catch (error) {
+      console.error('Error occurred while logging in:', error);
+      res.status(500).json({ message: 'Error occurred while logging in' });
+    }
+  }
+
+
+  static async signUpUser(req: Request, res: Response) {
+    const { email, mot_de_passe } = req.body;
+
+    try {
+      const userRepository = AppDataSource.getRepository(Utilisateur);
+
+      // Check if user with the provided email already exists
+      const existingUser = await userRepository.findOne({ where: { email } });
+      if (existingUser) {
+        return res.status(400).json({ message: 'User with this email already exists' });
+      }
+
+      // Create a new user
+      const newUser = new Utilisateur();
+      newUser.email = email;
+      newUser.mot_de_passe = mot_de_passe;
+
+      // Save the new user to the database
+      await userRepository.save(newUser);
+
+      // Return success response
+      res.status(201).json({ message: 'User created successfully', user: newUser });
+    } catch (error) {
+      console.error('Error occurred while signing up user:', error);
+      res.status(500).json({ message: 'Error occurred while signing up user' });
+    }
+  }
 }

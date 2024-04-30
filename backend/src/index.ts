@@ -4,6 +4,7 @@ import "reflect-metadata";
 import accidentRoutes from "./routes/accidentMetropoleRoutes";
 import { AppDataSource } from "./data-source";
 import signalementRoutes from "./routes/signalementRoutes";
+import loginRoutes from "./routes/loginRoutes";
 
 const app = express();
 const port = 3001;
@@ -13,6 +14,7 @@ app.use(cors());
 
 app.use("/api", accidentRoutes);
 app.use("/", signalementRoutes);
+app.use("/", loginRoutes);
 
 AppDataSource.initialize()
   .then(async () => {

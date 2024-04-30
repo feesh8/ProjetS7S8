@@ -21,6 +21,7 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
+      <Router>
       <header className="App-header">
         <h1>Sécurité des Cyclistes à Rennes</h1>
         <nav>
@@ -38,7 +39,6 @@ const App: React.FC = () => {
         </nav>
       </header>
       <div>
-      <h1>Welcome to My App</h1>
       {loggedIn ? (
         <div>
           <p>You are logged in</p>
@@ -49,8 +49,7 @@ const App: React.FC = () => {
         <Login onLogin={handleLogin} />
       )}
     </div>
-      <Router>
-      
+ 
       <Routes>
           <Route path="/accidents/:id" element={<DetailsAccident />} />
           <Route path="/signalement" element={<Signalement />} />
