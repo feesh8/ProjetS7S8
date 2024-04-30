@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/api", accidentRoutes);
-app.use("/api", signalementRoutes);
+app.use("/", signalementRoutes);
 
 AppDataSource.initialize()
   .then(async () => {

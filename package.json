@@ -1,9 +1,8 @@
 {
   "devDependencies": {
-    "cypress": "^13.6.4"
+    "cypress": "^13.7.3"
   },
-  "dependencies": {
-    "@auth0/auth0-react": "^2.2.4",
-    "react-router-dom": "^6.22.3"
+  "scripts": {
+    "test:cypress": "cypress run --browser chrome"
   }
 }
