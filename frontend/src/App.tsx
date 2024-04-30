@@ -3,12 +3,9 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Map from './components/Map';
 import DetailsAccident from './components/DetailsAccident';
 import './App.css';
-<<<<<<< HEAD
 import Map_user from './components/Map_user';
 import DetailsSignalement from './components/DetailsSignalement';
-=======
 import Signalement from './components/Signalement';
->>>>>>> develop
 
 const App: React.FC = () => {
   return (
@@ -33,12 +30,9 @@ const App: React.FC = () => {
       
       <Routes>
           <Route path="/accidents/:id" element={<DetailsAccident />} />
-<<<<<<< HEAD
           <Route path="/signalements/:id" element={<DetailsSignalement />} />
-          <Route path="/signalement" element={<Map_user />} />
-=======
+          <Route path="/map_signalement" element={<Map_user />} />
           <Route path="/signalement" element={<Signalement />} />
->>>>>>> develop
           <Route path="/" element={<Map />} />
       </Routes>
       </Router>
