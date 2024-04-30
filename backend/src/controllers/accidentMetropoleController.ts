@@ -4,9 +4,7 @@ import axios from "axios";
 export class AccidentMetropoleController {
   static async getAccidents(req: Request, res: Response) {
     try {
-      const response = await axios.get(
-        "http://data-engineering:5001/api/accidents"
-      );
+      const response = await axios.get("http://nginx:1234/de/api/accidents");
       res.json(response.data);
     } catch (error) {
       console.error("Error fetching accident data:", error);
@@ -18,7 +16,7 @@ export class AccidentMetropoleController {
     const { id } = req.params;
     try {
       const response = await axios.get(
-        `http://data-engineering:5001/api/accidents/${id}`
+        `http://nginx:1234/de/api/accidents/${id}`
       );
       res.json(response.data);
     } catch (error) {

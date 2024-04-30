@@ -20,14 +20,6 @@ const customIcon = new L.Icon({
   iconSize: new L.Point(40, 47)
 });
 
-const createClusterCustomIcon = function (cluster: MarkerCluster) {
-  return L.divIcon({
-    html: `<span>${cluster.getChildCount()}</span>`,
-    className: "custom-marker-cluster",
-    iconSize: L.point(33, 33, true)
-  });
-};
-
 const Map: React.FC = () => {
   const [data, setData] = useState<DataItem[]>([]);
 
@@ -37,7 +29,7 @@ const Map: React.FC = () => {
 
   const fetchData = async () => {
       try {
-          const response = await axios.get('http://localhost:3001/api/accidents');
+          const response = await axios.get('http://localhost:1234/de/api/accidents');
           if (Array.isArray(response.data)) {
             setData(response.data);
         } else {

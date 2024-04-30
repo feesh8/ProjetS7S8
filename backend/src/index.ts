@@ -14,6 +14,14 @@ app.use(cors());
 app.use("/api", accidentRoutes);
 app.use("/", signalementRoutes);
 
+app.use(
+  cors({
+    origin: ["http://localhost:1234", "http://localhost:3000"], // Liste des domaines autorisés
+    methods: ["GET", "POST", "PUT", "DELETE"], // Méthodes HTTP autorisées
+    allowedHeaders: ["Content-Type", "Authorization"], // En-têtes autorisés
+  })
+);
+
 AppDataSource.initialize()
   .then(async () => {
     app.listen(port, () => {

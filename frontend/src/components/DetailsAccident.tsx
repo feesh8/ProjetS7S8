@@ -11,7 +11,7 @@ const DetailsAccident = () => {
     useEffect(() => {
       const fetchAccidentDetails = async () => {
         try {
-          const response = await axios.get(`http://localhost:3001/api/accidents/${accidentId}`);
+          const response = await axios.get(`http://localhost:1234/de/api/accidents/${accidentId}`);
           setAccidentDetails(response.data);
         } catch (error) {
           console.error('Error fetching accident details:', error);
