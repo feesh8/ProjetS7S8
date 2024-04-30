@@ -50,3 +50,9 @@ services:
       - "1234:80"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
+<<<<<<< HEAD
+=======
+
+volumes:
+  postgres-data:
+>>>>>>> 540a1ae6a01cdb52e6b7ec4cf659f0d13beae21b
