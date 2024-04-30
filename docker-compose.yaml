@@ -58,12 +58,12 @@ services:
     networks:
       - back
 
-  cypress:
-    build:
-      context: .
-      dockerfile: ./cypress/Dockerfile
-    depends_on:
-      - nginx
+  # cypress:
+  #   build:
+  #     context: .
+  #     dockerfile: ./cypress/Dockerfile
+  #   depends_on:
+  #     - nginx
 
 volumes:
   postgres-data:
