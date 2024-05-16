@@ -3,11 +3,8 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 
-interface LoginProps {
-  onLogin: () => void;
-}
 
-const Login: React.FC<LoginProps> = ({ onLogin }) => {
+const Login: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -24,7 +21,6 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
       // Check if login was successful based on the response status
       if (response.status === 200) {
         setIsLoggedIn(true);
-        onLogin();
       } else {
         alert('Invalid email or password');
       }
@@ -55,6 +51,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
       <button onClick={handleLogin}>Login</button>
     </div>
   );
+  
 };
 
 export default Login;

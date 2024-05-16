@@ -33,26 +33,21 @@ const App: React.FC = () => {
               Carte (à link)
             </li>
             <li>
+              <Link to="/login" className="login-button">Login</Link>
+            </li>
+            <li>
               <Link to="/signalement" className="signaler-button">Signaler</Link>
             </li>
           </ul>
         </nav>
       </header>
       <div>
-      {loggedIn ? (
-        <div>
-          <p>You are logged in</p>
-          <button onClick={handleLogout}>Logout</button>
-          {/* Place the actions you want to restrict here */}
-        </div>
-      ) : (
-        <Login onLogin={handleLogin} />
-      )}
     </div>
  
       <Routes>
           <Route path="/accidents/:id" element={<DetailsAccident />} />
           <Route path="/signalement" element={<Signalement />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/" element={<Map />} />
       </Routes>
       </Router>
