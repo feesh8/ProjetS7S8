@@ -4,6 +4,7 @@ import "reflect-metadata";
 import accidentRoutes from "./routes/accidentMetropoleRoutes";
 import { AppDataSource } from "./data-source";
 import signalementRoutes from "./routes/signalementRoutes";
+import "dotenv/config";
 
 const app = express();
 const port = 3001;
