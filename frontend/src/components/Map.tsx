@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import "./Map.css";
 import "leaflet/dist/leaflet.css";
 
+const apiUrl = process.env.API_URL || 'http://localhost:8080';
+
 interface DataItem {
   id: number;
   date: string;
@@ -29,7 +31,7 @@ const Map: React.FC = () => {
 
   const fetchData = async () => {
       try {
-          const response = await axios.get('http://localhost:1234/de/api/accidents');
+          const response = await axios.get(`${apiUrl}/de/api/accidents`);
           if (Array.isArray(response.data)) {
             setData(response.data);
         } else {

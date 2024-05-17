@@ -52,7 +52,7 @@ services:
       - frontend
       - data-engineering
     ports:
-      - "1234:80"
+      - "8080:80"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
     networks:

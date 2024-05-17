@@ -1,10 +1,12 @@
 import { Request, Response } from "express";
 import axios from "axios";
 
+const apiUrl = process.env.API_URL || "http://localhost:8080";
+
 export class AccidentMetropoleController {
   static async getAccidents(req: Request, res: Response) {
     try {
-      const response = await axios.get("http://nginx:1234/de/api/accidents");
+      const response = await axios.get(`${apiUrl}/de/api/accidents`);
       res.json(response.data);
     } catch (error) {
       console.error("Error fetching accident data:", error);
@@ -15,9 +17,7 @@ export class AccidentMetropoleController {
   static async getAccidentById(req: Request, res: Response) {
     const { id } = req.params;
     try {
-      const response = await axios.get(
-        `http://nginx:1234/de/api/accidents/${id}`
-      );
+      const response = await axios.get(`${apiUrl}/de/api/accidents${id}`);
       res.json(response.data);
     } catch (error) {
       if (

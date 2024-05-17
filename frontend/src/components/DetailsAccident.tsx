@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import "./DetailsAccident.css"
 
+const apiUrl = process.env.API_URL || 'http://localhost:8080';
 
 const DetailsAccident = () => {
     const [accidentDetails, setAccidentDetails] = useState<any>({});
@@ -11,7 +12,7 @@ const DetailsAccident = () => {
     useEffect(() => {
       const fetchAccidentDetails = async () => {
         try {
-          const response = await axios.get(`http://localhost:1234/de/api/accidents/${accidentId}`);
+          const response = await axios.get(`${apiUrl}/de/api/accidents/${accidentId}`);
           setAccidentDetails(response.data);
         } catch (error) {
           console.error('Error fetching accident details:', error);
