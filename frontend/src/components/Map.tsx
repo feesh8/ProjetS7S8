@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import "./Map.css";
 import "leaflet/dist/leaflet.css";
 
-const apiUrl = process.env.API_URL || 'http://localhost:8080';
+const apiUrl = process.env.API_URL;
 
 interface DataItem {
   id: number;

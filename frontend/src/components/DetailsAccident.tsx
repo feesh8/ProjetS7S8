@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import "./DetailsAccident.css"
 
-const apiUrl = process.env.API_URL || 'http://localhost:8080';
+const apiUrl = process.env.API_URL;
 
 const DetailsAccident = () => {
     const [accidentDetails, setAccidentDetails] = useState<any>({});

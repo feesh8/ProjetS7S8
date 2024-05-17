@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import axios from "axios";
 
-const apiUrl = process.env.API_URL || "http://localhost:8080";
+const apiUrl = process.env.API_URL;
 
 export class AccidentMetropoleController {
   static async getAccidents(req: Request, res: Response) {
