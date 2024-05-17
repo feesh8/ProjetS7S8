@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import "./DetailsAccident.css"
-
-const apiUrl = process.env.API_URL;
+import "./DetailsAccident.css";
+import apiUrl from '../config';
 
 const DetailsAccident = () => {
     const [accidentDetails, setAccidentDetails] = useState<any>({});
