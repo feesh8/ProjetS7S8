@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Map from './components/Map';
 import DetailsAccident from './components/DetailsAccident';
 import './App.css';
+import Map_user from './components/Map_user';
+import DetailsSignalement from './components/DetailsSignalement';
 import Signalement from './components/Signalement';
 
 const App: React.FC = () => {
@@ -16,9 +18,7 @@ const App: React.FC = () => {
             <li>
               <Link to="/" className="links">Accueil</Link>
             </li>
-            <li className="links">
-              Carte (à link)
-            </li>
+              <Link to="/map_signalement" className="links">Carte</Link>
             <li>
               <Link to="/signalement" className="signaler-button">Signaler</Link>
             </li>
@@ -28,11 +28,13 @@ const App: React.FC = () => {
       
       <Routes>
           <Route path="/accidents/:id" element={<DetailsAccident />} />
+          <Route path="/signalements/:id" element={<DetailsSignalement />} />
+          <Route path="/map_signalement" element={<Map_user />} />
           <Route path="/signalement" element={<Signalement />} />
           <Route path="/" element={<Map />} />
       </Routes>
       </Router>
-    </div>
+    </div>  
     
   );
 };
