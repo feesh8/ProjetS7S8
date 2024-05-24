@@ -66,17 +66,16 @@ export class UserController {
       if (existingUser) {
         return res.status(400).json({ message: 'User with this email already exists' });
       }
-
-      // Create a new user
-      const newUser = new Utilisateur();
-      newUser.email = email;
-      newUser.mot_de_passe = mot_de_passe;
+        
+      const newUser = userRepository.create({ email, mot_de_passe });
 
       // Save the new user to the database
       await userRepository.save(newUser);
 
       // Return success response
       res.status(201).json({ message: 'User created successfully', user: newUser });
+      
+      
     } catch (error) {
       console.error('Error occurred while signing up user:', error);
       res.status(500).json({ message: 'Error occurred while signing up user' });
