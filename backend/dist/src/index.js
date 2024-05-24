@@ -19,13 +19,15 @@ require("reflect-metadata");
 const accidentMetropoleRoutes_1 = __importDefault(require("./routes/accidentMetropoleRoutes"));
 const data_source_1 = require("./data-source");
 const signalementRoutes_1 = __importDefault(require("./routes/signalementRoutes"));
+const loginRoutes_1 = __importDefault(require("./routes/loginRoutes"));
 const app = (0, express_1.default)();
 exports.app = app;
 const port = 3001;
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 app.use("/api", accidentMetropoleRoutes_1.default);
-app.use("/api", signalementRoutes_1.default);
+app.use("/", signalementRoutes_1.default);
+app.use("/", loginRoutes_1.default);
 data_source_1.AppDataSource.initialize()
     .then(() => __awaiter(void 0, void 0, void 0, function* () {
     app.listen(port, () => {

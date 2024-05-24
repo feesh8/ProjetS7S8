@@ -9,30 +9,46 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Utilisateur = void 0;
+exports.Signalement = void 0;
 const typeorm_1 = require("typeorm");
+const Utilisateur_1 = require("./Utilisateur");
 require("reflect-metadata");
-const Signalement_1 = require("./Signalement");
-let Utilisateur = class Utilisateur {
+let Signalement = class Signalement {
 };
-exports.Utilisateur = Utilisateur;
+exports.Signalement = Signalement;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], Utilisateur.prototype, "id", void 0);
+], Signalement.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Utilisateur.prototype, "email", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Utilisateur.prototype, "mot_de_passe", void 0);
-__decorate([
-    (0, typeorm_1.OneToMany)(() => Signalement_1.Signalement, (accident) => accident.user, { eager: true }),
+    (0, typeorm_1.ManyToOne)(() => Utilisateur_1.Utilisateur, (user) => user.signalements),
     (0, typeorm_1.JoinTable)(),
-    __metadata("design:type", Array)
-], Utilisateur.prototype, "signalements", void 0);
-exports.Utilisateur = Utilisateur = __decorate([
+    __metadata("design:type", Utilisateur_1.Utilisateur)
+], Signalement.prototype, "user", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Signalement.prototype, "latitude", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Signalement.prototype, "longitude", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Signalement.prototype, "adresse", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Signalement.prototype, "date", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Signalement.prototype, "description", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Signalement.prototype, "type", void 0);
+exports.Signalement = Signalement = __decorate([
     (0, typeorm_1.Entity)()
-], Utilisateur);
+], Signalement);

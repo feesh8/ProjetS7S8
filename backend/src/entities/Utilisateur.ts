@@ -17,7 +17,7 @@ export class Utilisateur {
   email!: string;
 
   @Column()
-  mdp!: string;
+  mot_de_passe!: string;
 
   @OneToMany(() => Signalement, (accident) => accident.user, { eager: true })
   @JoinTable()
