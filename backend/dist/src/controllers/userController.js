@@ -22,5 +22,71 @@ class UserController {
             });
         });
     }
+    static getUserByEmail(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                // Récupérer l'email à partir des paramètres de requête
+                const email = req.params.email;
+                // Récupérer le référentiel utilisateur
+                const userRepository = data_source_1.AppDataSource.getRepository(Utilisateur_1.Utilisateur);
+                // Rechercher l'utilisateur par son email
+                const user = yield userRepository.findOne({ where: { email } });
+                // Vérifier si l'utilisateur existe
+                if (!user) {
+                    return res.status(404).json({ message: 'Utilisateur non trouvé' });
+                }
+                // Retourner l'utilisateur trouvé
+                return res.status(200).json(user);
+            }
+            catch (error) {
+                console.error('Erreur lors de la récupération de l\'utilisateur par email :', error);
+                return res.status(500).json({ message: 'Erreur lors de la récupération de l\'utilisateur' });
+            }
+        });
+    }
+    static loginUser(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { email, mot_de_passe } = req.body;
+            try {
+                const userRepository = data_source_1.AppDataSource.getRepository(Utilisateur_1.Utilisateur);
+                const user = yield userRepository.findOne({ where: { email, mot_de_passe } });
+                if (user) {
+                    res.status(200).json({ user });
+                }
+                else {
+                    res.status(401).json({ message: 'Invalid email or password' });
+                }
+            }
+            catch (error) {
+                console.error('Error occurred while logging in:', error);
+                res.status(500).json({ message: 'Error occurred while logging in' });
+            }
+        });
+    }
+    static signUpUser(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { email, mot_de_passe } = req.body;
+            try {
+                const userRepository = data_source_1.AppDataSource.getRepository(Utilisateur_1.Utilisateur);
+                // Check if user with the provided email already exists
+                const existingUser = yield userRepository.findOne({ where: { email } });
+                if (existingUser) {
+                    return res.status(400).json({ message: 'User with this email already exists' });
+                }
+                // Create a new user
+                const newUser = new Utilisateur_1.Utilisateur();
+                newUser.email = email;
+                newUser.mot_de_passe = mot_de_passe;
+                // Save the new user to the database
+                yield userRepository.save(newUser);
+                // Return success response
+                res.status(201).json({ message: 'User created successfully', user: newUser });
+            }
+            catch (error) {
+                console.error('Error occurred while signing up user:', error);
+                res.status(500).json({ message: 'Error occurred while signing up user' });
+            }
+        });
+    }
 }
 exports.UserController = UserController;
