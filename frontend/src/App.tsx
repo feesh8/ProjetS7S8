@@ -18,9 +18,7 @@ const App: React.FC = () => {
             <li>
               <Link to="/" className="links">Accueil</Link>
             </li>
-            <li className="links">
-              Carte (à link)
-            </li>
+              <Link to="/map_signalement" className="links">Carte</Link>
             <li>
               <Link to="/signalement" className="signaler-button">Signaler</Link>
             </li>

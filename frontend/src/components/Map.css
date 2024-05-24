@@ -1,5 +1,5 @@
 /* Map container styles */
-.Map-container {
+/* .Map-container {
     height: 500px;
     width: 80%;
     margin: 100px auto 100px auto;
@@ -12,3 +12,65 @@
     margin: auto;
     flex-direction: column;
   }
+
+   */
+
+  /* Map container styles */
+  
+/* Map container styles */
+.Map-container {
+  height: 600px;  /* Agrandissement de la carte */
+  width: 75%;
+  margin: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: top;
+}
+
+/* Filter controls styles */
+.filter-controls {
+  width: 20%;
+  margin: 20px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.filter-controls h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.filter-controls label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.filter-controls input {
+  width: 100%;
+  padding: 5px;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
+.filter-controls label {
+  font-weight: bold;
+}
+
+/* Flex container styles */
+.flex {
+  width: 90%;
+  margin: 50px auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.flex img {
+  width: 30%;
+  height: auto;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
