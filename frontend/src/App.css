@@ -9,10 +9,72 @@ body {
 }
 
 .App-header {
-  background-color: #282c34;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #06668C;
   padding: 20px;
   color: white;
 }
+
+.nav-links {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  display: inline;
+  margin-right: 1rem;
+}
+
+.nav-links li:last-child {
+  margin-right: 0;
+}
+
+.links {
+  color: #fff;
+  text-decoration: none;
+}
+
+.links:hover {
+  color: #61dafb;
+}
+
+.signaler-button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  color: #333; /* Couleur du texte */
+  border: 1px solid #333;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.signaler-button:hover {
+  background-color: #333;
+  color: #fff; /* Couleur du texte lorsqu'il est survolé */
+  border-color: #fff;
+}
+
+.login-button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  color: #333; /* Couleur du texte */
+  border: 1px solid #333;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #333;
+  color: #fff; /* Couleur du texte lorsqu'il est survolé */
+  border-color: #fff;
+}
+
 
 h1 {
   margin: 0;
@@ -22,19 +84,4 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-/* Map container styles */
-.Map-container {
-  height: 500px;
-  width: 80%;
-  margin: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.flex {
-  display: flex;
-  flex-direction: column;
 }

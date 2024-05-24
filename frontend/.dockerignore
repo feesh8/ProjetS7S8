@@ -1,0 +1,8 @@
+# Exclure les fichiers générés lors de la construction
+node_modules
+build
+npm-debug.log
+*.log
+
+# Exclure les fichiers de configuration locale
+.env

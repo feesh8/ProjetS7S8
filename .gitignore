@@ -1,0 +1,28 @@
+.vscode/*
+.vscode
+
+.idea/
+build/
+tmp/
+temp/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+node_modules/
+
+# TypeScript cache
+*.tsbuildinfo
+
+.DS_Store
+
+# Python
+
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+.pytest_cache
