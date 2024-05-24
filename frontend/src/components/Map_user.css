@@ -11,12 +11,8 @@
     width: 50%;
     margin: auto;
     flex-direction: column;
-  }
+  } */
 
-   */
-
-  /* Map container styles */
-  
 /* Map container styles */
 .Map-container {
   height: 600px;  /* Agrandissement de la carte */
@@ -41,15 +37,11 @@
   font-size: 24px;
 }
 
-.filter-controls label {
-  display: block;
-  margin-bottom: 10px;
-}
-
+.filter-controls select,
 .filter-controls input {
   width: 100%;
   padding: 5px;
-  margin-top: 5px;
+  margin-top: 10px;
   box-sizing: border-box;
 }
 
@@ -73,4 +65,3 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-

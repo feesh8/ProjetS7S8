@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import axios from "axios";
 
 export class AccidentMetropoleController {
+  
   static async getAccidents(req: Request, res: Response) {
     try {
       const response = await axios.get(
