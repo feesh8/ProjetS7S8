@@ -4,6 +4,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
+import apiUrl from '../config';
 
 const SignUp: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -15,7 +16,7 @@ const SignUp: React.FC = () => {
 
     try {
       // Send sign-up request to backend
-      const response = await axios.post('http://localhost:3001/signup', {
+      const response = await axios.post(`${apiUrl}/api/signup`, {
         email: email,
         mot_de_passe: password,
       });

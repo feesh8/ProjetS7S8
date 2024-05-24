@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+import apiUrl from '../config';
 
 
 const DetailsSignalement = () => {
@@ -10,7 +11,7 @@ const DetailsSignalement = () => {
     useEffect(() => {
       const fetchSignalementDetails = async () => {
         try {
-          const response = await axios.get(`http://localhost:3001/signalements/${signalementId}`);
+          const response = await axios.get(`${apiUrl}/api/signalements/${signalementId}`);
           setSignalementDetails(response.data.data);
         } catch (error) {
           console.error('Error fetching signalement details:', error);
