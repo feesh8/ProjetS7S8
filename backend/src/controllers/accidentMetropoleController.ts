@@ -17,7 +17,7 @@ export class AccidentMetropoleController {
   static async getAccidentById(req: Request, res: Response) {
     const { id } = req.params;
     try {
-      const response = await axios.get(`${apiUrl}/de/api/accidents${id}`);
+      const response = await axios.get(`${apiUrl}/de/api/accidents/${id}`);
       res.json(response.data);
     } catch (error) {
       if (
