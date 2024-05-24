@@ -71,9 +71,8 @@ export class UserController {
 
       // Save the new user to the database
       await userRepository.save(newUser);
-
       // Return success response
-      res.status(201).json({ message: 'User created successfully', user: newUser });
+      res.status(200).json({ message: 'User created successfully', user: newUser });
       
       
     } catch (error) {

@@ -12,6 +12,7 @@ const SignUp: React.FC = () => {
   const navigate = useNavigate();
 
   const handleSignUp = async () => {
+
     try {
       // Send sign-up request to backend
       const response = await axios.post('http://localhost:3001/signup', {
@@ -19,9 +20,10 @@ const SignUp: React.FC = () => {
         mot_de_passe: password,
       });
 
+
       // Check if sign-up was successful
       if (response.status === 200) {
-        alert('Account created successfully! Please log in.');
+        alert('Account created successfully!');
         login();
         navigate('/'); // Redirect to login page after successful sign-up
       } else {
