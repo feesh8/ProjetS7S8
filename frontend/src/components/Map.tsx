@@ -30,7 +30,7 @@ const Map: React.FC = () => {
 
   const fetchData = async () => {
       try {
-          const response = await axios.get(`${apiUrl}/de/api/accidents`);
+          const response = await axios.get(`${apiUrl}/api/api/accidents`);
           if (Array.isArray(response.data)) {
             setData(response.data);
         } else {
