@@ -5,6 +5,8 @@ import DetailsAccident from './components/DetailsAccident';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import './App.css';
+import Map_user from './components/Map_user';
+import DetailsSignalement from './components/DetailsSignalement';
 import Signalement from './components/Signalement';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider, useAuth } from './AuthContext';
@@ -31,9 +33,7 @@ const App: React.FC = () => {
             <li>
               <Link to="/" className="links">Accueil</Link>
             </li>
-            <li className="links">
-              Carte (à link)
-            </li>
+              <Link to="/map_signalement" className="links">Carte</Link>
          
             <li>
               {isLoggedIn ? (
@@ -53,6 +53,8 @@ const App: React.FC = () => {
  
       <Routes>
           <Route path="/accidents/:id" element={<DetailsAccident />} />
+          <Route path="/signalements/:id" element={<DetailsSignalement />} />
+          <Route path="/map_signalement" element={<Map_user />} />
             <Route
             path="/signalement"
             element={
@@ -66,7 +68,7 @@ const App: React.FC = () => {
           <Route path="/" element={<Map />} />
       </Routes>
       </Router>
-    </div>
+    </div>  
     
   );
 };

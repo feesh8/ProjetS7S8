@@ -3,6 +3,7 @@ import { AppDataSource } from "../data-source";
 import { Signalement } from "../entities/Signalement";
 import { Utilisateur } from "../entities/Utilisateur";
 
+
 export class SignalementController {
   static async getSignalement(req: Request, res: Response) {
     try {
@@ -32,6 +33,27 @@ export class SignalementController {
       }
     }
   }
+
+  static async getSignalementbyid(req: Request, res: Response) {
+    const { id } = req.params;
+    try {
+        const signalementRepository = AppDataSource.getRepository(Signalement);
+        const signalement = await signalementRepository.findOne({where: { id: id },});
+        
+        if (!signalement) {
+            return res.status(404).json({ error: "Signalement non trouvé" });
+        }
+        
+        return res.json({ data: signalement });
+    } catch (error) {
+        if (error instanceof Error) {
+            return res.status(500).json({
+                error: "Erreur lors de la récupération des données: " + error.message,
+            });
+        }
+    }
+}
+
 
   static async createSignalement(req: Request, res: Response) {
     try {

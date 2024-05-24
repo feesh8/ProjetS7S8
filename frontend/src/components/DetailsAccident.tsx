@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import "./DetailsAccident.css"
 
@@ -48,7 +48,7 @@ const DetailsAccident = () => {
       <p><b>Heure</b> : {accidentDetails.Heure}</p>
       <p><b>Adresse</b> : {accidentDetails.adresse}</p>
       <p><b>Description</b> : {renderDescription()}</p>
-      <button>Retour</button>
+      <Link to={`/`} className="link-retour" >Retour</Link>
     </div>
   );
   };
