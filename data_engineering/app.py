@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, Response
 from flask_cors import CORS, cross_origin
+from gevent.pywsgi import WSGIServer
 import csv
 
 app = Flask(__name__)
@@ -84,4 +85,8 @@ def handle_not_found_error(error):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001)
+    # Debug/Development
+    # app.run(host='0.0.0.0', port=5001)
+    # Production
+    http_server = WSGIServer(('', 5001), app)
+    http_server.serve_forever()
