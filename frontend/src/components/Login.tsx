@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../AuthContext';
 import { Link, Route, useNavigate } from 'react-router-dom';
 import SignUp from './SignUp';
+import apiUrl from '../config';
 
 const Login: React.FC = () => {
   const { login } = useAuth();
@@ -36,7 +37,7 @@ const Login: React.FC = () => {
   const handleLogin = async () => {
     try {
       // Send login request to backend
-      const response = await axios.post('http://localhost:3001/login', {
+      const response = await axios.post(`${apiUrl}/api/login`, {
         email: email,
         mot_de_passe: password,
       });

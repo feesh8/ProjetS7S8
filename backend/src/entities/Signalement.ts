@@ -17,10 +17,10 @@ export class Signalement {
   @JoinTable()
   user!: Utilisateur; // Relation ManyToOne avec User
 
-  @Column()
+  @Column("decimal", { precision: 10, scale: 6 })
   latitude!: number;
 
-  @Column()
+  @Column("decimal", { precision: 10, scale: 6 })
   longitude!: number;
 
   @Column()

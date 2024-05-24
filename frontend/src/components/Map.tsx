@@ -6,6 +6,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Link } from 'react-router-dom';
 import "./Map.css";
 import "leaflet/dist/leaflet.css";
+import apiUrl from '../config';
 
 interface DataItem {
   id: number;
@@ -19,14 +20,6 @@ const customIcon = new L.Icon({
   iconUrl: require("./location.svg").default,
   iconSize: new L.Point(40, 47)
 });
-
-const createClusterCustomIcon = function (cluster: MarkerCluster) {
-  return L.divIcon({
-    html: `<span>${cluster.getChildCount()}</span>`,
-    className: "custom-marker-cluster",
-    iconSize: L.point(33, 33, true)
-  });
-};
 
 const Map: React.FC = () => {
   const [data, setData] = useState<DataItem[]>([]);
@@ -58,17 +51,17 @@ const Map: React.FC = () => {
   }, [data, startDate, endDate]);
   
   const fetchData = async () => {
-    try {
-      const response = await axios.get('http://localhost:3001/api/accidents');
-      if (Array.isArray(response.data)) {
-        setData(response.data);
-      } else {
-        console.error('Le type de données reçu n\'est pas un tableau.');
+      try {
+          const response = await axios.get(`${apiUrl}/api/api/accidents`);
+          if (Array.isArray(response.data)) {
+            setData(response.data);
+        } else {
+            console.error('Le type de données reçu n\'est pas un tableau.');
+        }
+      } catch (error) {
+          console.error('Erreur lors de la récupération des données:', error);
       }
-    } catch (error) {
-      console.error('Erreur lors de la récupération des données:', error);
-    }
-  };
+    };
 
   // return (
   //   <>
