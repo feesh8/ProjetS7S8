@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import L, { MarkerCluster } from "leaflet";
 import "./Map_user.css";
 import "leaflet/dist/leaflet.css";
+import apiUrl from '../config';
 
 interface DataItem {
   id: number;
@@ -46,7 +47,7 @@ const Map: React.FC = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/signalements');
+      const response = await axios.get(`${apiUrl}/api/signalements`);
       if (Array.isArray(response.data.data)) {
         setData(response.data.data);
       } else {

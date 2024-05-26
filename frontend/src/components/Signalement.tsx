@@ -38,10 +38,10 @@ const Signalement = () => {
       const { lat, lng } = event.target._latlng;
 
       const apiKey = '8dc8c772f2cd466ea51dff507c2ec227';
-      const apiUrl = `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lng}&apiKey=${apiKey}`;
+      const apiUrlMap = `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lng}&apiKey=${apiKey}`;
 
       try {
-        const response = await axios.get(apiUrl);
+        const response = await axios.get(apiUrlMap);
         const data = response.data;
         // Mettre à jour les coordonnées dans le state formData
         setFormData(prevState => ({
