@@ -13,7 +13,7 @@ import { AuthProvider, useAuth } from './AuthContext';
 
 
 const App: React.FC = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  // const [loggedIn, setLoggedIn] = useState(false);
 
   const { isLoggedIn, logout } = useAuth();
 
@@ -33,8 +33,9 @@ const App: React.FC = () => {
             <li>
               <Link to="/" className="links">Accueil</Link>
             </li>
+            <li>
               <Link to="/map_signalement" className="links">Carte</Link>
-         
+            </li>
             <li>
               {isLoggedIn ? (
                 <button onClick={handleLogout} className="login-button">Se déconnecter</button>

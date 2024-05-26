@@ -21,11 +21,16 @@ body {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  display: flex; /* Change from block to flex to control spacing */
+  align-items: center; /* Ensure items are centered vertically */
+  gap: 1rem; 
 }
 
 .nav-links li {
   display: inline;
-  margin-right: 1rem;
+  display: flex; /* Use flex to allow centering */
+  align-items: center; /* Center items vertically */
+  /* margin-right: 1rem; */
 }
 
 .nav-links li:last-child {

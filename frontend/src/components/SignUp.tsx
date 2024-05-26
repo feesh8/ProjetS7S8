@@ -4,6 +4,8 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
+import "./Login.css";
+
 
 const SignUp: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -36,8 +38,8 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2>Sign Up</h2>
+    <div className="form-container">
+      <h2>Inscription</h2>
       <input
         type="text"
         placeholder="Email"
@@ -46,11 +48,11 @@ const SignUp: React.FC = () => {
       />
       <input
         type="password"
-        placeholder="Password"
+        placeholder="Mot de passe"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button onClick={handleSignUp}>Sign Up</button>
+      <button onClick={handleSignUp}>S'inscrire</button>
     </div>
   );
 };
