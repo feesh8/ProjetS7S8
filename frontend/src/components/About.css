@@ -1,0 +1,16 @@
+.about-page {
+    padding: 20px;
+    background-color: #f9f9f9;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .about-page h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+  
+  .about-page p {
+    margin-bottom: 10px;
+  }
