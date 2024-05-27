@@ -17,7 +17,7 @@ Il y a des modifications à apporter sur le code.
 
 - Dans `backend/src/controllers/accidentMetropoleController.ts` :
 
-`const apiUrl = "http://localhost:8080";` :
+`const apiUrl = "http://nginx:80";` :
 
 - Dans `data_engineering/app.py` :
 
